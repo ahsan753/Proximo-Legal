@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proximo — Privacy Policy</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main>
+    <p class="brand">Proximo</p>
+    <article id="content"><p class="loading">Loading…</p></article>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+  <script>
+    fetch('/privacy.md')
+      .then(r => r.ok ? r.text() : Promise.reject(r.status))
+      .then(md => { document.getElementById('content').innerHTML = marked.parse(md); })
+      .catch(() => {
+        document.getElementById('content').innerHTML =
+          '<p>Could not load the Privacy Policy. Please try again later.</p>';
+      });
+  </script>
+</body>
+</html>
